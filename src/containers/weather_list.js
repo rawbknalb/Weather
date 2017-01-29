@@ -13,50 +13,22 @@ class WeatherList extends Component {
     return this.props.weather.map(cityData => {
       const name = cityData.city.name;
 
-      const temperature = cityData.list.reduce(
-        (a, tempData) => {
-          const data = {};
-          data.value = tempData.main.temp;
-          a.push(data);
-          return a;
-        },
-        []
-      );
-
-      const pressure = cityData.list.reduce(
-        (a, tempData) => {
-          const data = {};
-          data.value = tempData.main.pressure;
-          a.push(data);
-          return a;
-        },
-        []
-      );
-
-      const humidity = cityData.list.reduce(
-        (a, tempData) => {
-          const data = {};
-          data.value = tempData.main.humidity;
-          a.push(data);
-          return a;
-        },
-        []
-      );            
+      const date = cityData.list.map(weather => weather.dt_txt.slice(0, 16));
+      const temperature = cityData.list.map(weather => weather.main.temp);
+      const pressure = cityData.list.map(weather => weather.main.pressure);
+      const humidity = cityData.list.map(weather => weather.main.humidity);
 
       return (
         <div key={cityData.city.id}>
           <div className="card-block">
-            <h4 className="card-title">{name}</h4>
-            <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" className="btn btn-primary">Go somewhere</a>
-          </div> 
+            <h4 className="card-title">5 day / 3 hour forecast for {name}</h4>
+          </div>
           <div className="card-block">
-              <WeatherChart data={temperature} type="Temperature" />
-              <WeatherChart data={pressure} type="Pressure" />
-              <WeatherChart data={humidity} type="Humidity" />                     
-          </div>         
+            <WeatherChart data={temperature} type="Temperature" date={date} />
+            <WeatherChart data={pressure} type="Pressure" date={date} />
+            <WeatherChart data={humidity} type="Humidity" date={date} />
+          </div>
         </div>
-
       );
     });
   }
@@ -64,7 +36,7 @@ class WeatherList extends Component {
   render() {
     return (
       <div className="card text-center">
-          {this.renderWeather()}
+        {this.renderWeather()}
       </div>
     );
   }

@@ -25,7 +25,7 @@ class SearchBar extends Component {
       >
         <input
           value={this.state.searchTerm}
-          placeholder="Get a five-day forecast in your favorite countries"
+          placeholder="City Name"
           className="form-control"
           onChange={event => this.setState({ searchTerm: event.target.value })}
         />
