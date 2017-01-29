@@ -10,7 +10,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import ReduxPromise from "redux-promise";
 
 // Reducers
-import rootReducer from "./reducers/index.js";
+import rootReducer from "./store/reducers/index.js";
 
 // const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
 const store = createStore(

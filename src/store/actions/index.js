@@ -7,7 +7,7 @@ export const FETCH_WEATHER = "FETCH_WEATHER";
 
 export function fetchWeather(city) {
   // q=${city},de&
-  const url = `${ROOT_URL}&q=${city},de`;
+  const url = `${ROOT_URL}&q=${city},de&units=metric`;
   const request = axios.get(url);
   // redux-promise looks at the payload
   // If the payload is a promise redux-promise stops the action
